@@ -10,8 +10,8 @@ namespace IDA_C_sh_ClassWork
     internal class App_BackUpCopy
     {
         public Storage[] storage_list;
-        long CompleteDataSize = 565 * Convert.ToInt64(Math.Pow(2, 30)); // 565 Gb
-        long DataFileSize = 780 * Convert.ToInt64(Math.Pow(2, 20)); // 780 Mb
+        public long CompleteDataSize { set; get; } = 565 * Convert.ToInt64(Math.Pow(2, 30)); // 565 Gb
+        public long DataFileSize { set; get; } = 780 * Convert.ToInt64(Math.Pow(2, 20)); // 780 Mb
         public long Get_All_Devices_Common_Capacity()
         {
             long common_capacity = 0;
@@ -33,9 +33,12 @@ namespace IDA_C_sh_ClassWork
             { throw new Exception("Not enough space to copy"); }
 
             long copy_time = 0; // [sec]
+            long estimated_data_to_copy = CompleteDataSize;
             foreach (Storage s in storage_list) 
-            {
+            {                
                 copy_time += s.Get_Capacity() / s.Get_Speed();
+                estimated_data_to_copy -= s.Get_Capacity();
+                if (estimated_data_to_copy < 0) break;
             }
             return copy_time;
         }
@@ -50,7 +53,7 @@ namespace IDA_C_sh_ClassWork
             long required_storage_ammount = files_ammount / files_on_one_storage;
             if (files_ammount % files_on_one_storage != 0) files_ammount++;
 
-            return required_storage_ammount;
+            return ++required_storage_ammount;
         }
         public void Initialise(int N_Flash, int N_DVD, int N_HDD)
         {
@@ -62,15 +65,14 @@ namespace IDA_C_sh_ClassWork
             { 
                 storage_list[storage_index++] = new Flash();
             }
-            for (int i = 0; i < N_DVD; i++)
-            { 
-                storage_list[storage_index++] = new DVD(); 
-            }
             for (int i = 0; i < N_HDD; i++)
             {
                 storage_list[storage_index++] = new HDD();
             }
-
+            for (int i = 0; i < N_DVD; i++)
+            { 
+                storage_list[storage_index++] = new DVD(); 
+            }   
         }
 
     }

@@ -19,7 +19,7 @@ namespace IDA_C_sh_ClassWork
         public long Capacity_2 { get; set; } = 9 * Convert.ToInt64(1E9); // 9 Gb in bytes
         public enum DVD_type { onesided, bisided };
         public DVD_type _type { get; set; } = DVD_type.bisided;
-
+        public DVD() { Name_ = "DVD"; Model_ = "Verbatum 40x"; }
         string _description = "DVD storage";
         override public long Get_Capacity() 
         { 
@@ -36,7 +36,12 @@ namespace IDA_C_sh_ClassWork
         }
         override public string Get_StorageInfo()
         {
-            return _description + "\nCapacity: " + (Get_Capacity() / (1024 * 1024)) + " [Mbytes]\nRead/Write Speed: " + (Speed_/(1024*1024)) + " [Mbytes/sec]\n";
+            return "\nDevice name: " + Name_ +
+                "\nModel: " + Model_ +
+                "\nside: " + _type +
+                "\ndescription: " + _description + 
+                "\nCapacity: " + (Get_Capacity() / (1024 * 1024)) + " [Mbytes]" +
+                "\nRead/Write Speed: " + (Speed_/(1024*1024)) + " [Mbytes/sec]\n";
         }
     }
 }

@@ -9,6 +9,19 @@ namespace IDA_C_sh_ClassWork
 {
     internal class Flash : Storage
     {
+        public void StorageClassInfo()
+        {
+            Console.WriteLine("Device name: {0}\nCapacity: {1} [Mb], {2} [Gb]",          
+                Name_,
+                Get_Capacity()/(1024*1024),
+                (double)Get_Capacity() / (1024 * 1024*1024)
+                );
+        }
+       public Flash()
+        {
+            Name_ = "USB_Flash";
+            Model_ = "1Gb";
+        }
         override public long Get_Speed()
         {
             return Speed_;
@@ -27,7 +40,11 @@ namespace IDA_C_sh_ClassWork
         }
         override public string Get_StorageInfo()
         {
-            return _description + "\nCapacity: " + (Capacity / (1024*1024)) + " [KB/s]\nRead/Write Speed: " + Speed_ + " [Mbit/sec]\n";
+            return "\nDevice name: " + Name_ +
+                "\nModel: " + Model_ +
+                "\ndescription: " + _description +
+                "\nCapacity: " + (Capacity / (1024*1024)) + " [Mb]" +
+                "\nRead/Write Speed: " + (Speed_ / (1024 * 1024)) + " [Mb/sec]\n";
         }
     }
 }

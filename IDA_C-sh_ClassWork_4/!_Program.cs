@@ -53,13 +53,9 @@ namespace IDA_C_sh_ClassWork
             variadic_range_array[-3] = 777;
             variadic_range_array[15] = 555;
            //variadic_range_array[20] = 333;
-
-
             for (int i = variadic_range_array.Min_Index_; i <= variadic_range_array.Max_Index_; i++)
                 //Console.WriteLine("[{0}] {1}", i, variadic_range_array[i]);
                 Console.WriteLine("[" + i + "] "+ variadic_range_array[i]);
-
-
 
 
             RangeOfArray variadic_range_array_2 = new RangeOfArray(5, 15);
@@ -141,7 +137,11 @@ namespace IDA_C_sh_ClassWork
             Console.ReadKey();
 
         }
-        public static void Task_3() { }
+        //Figure
+        public static void Task_3() 
+        {
+        
+        }
 
     } // class Programm
 }// namespace

@@ -138,11 +138,59 @@ namespace IDA_C_sh_ClassWork
 
         }
         //Figure
-        public static void Task_3() 
+        public static void Task_3()
         {
-        
-        }
+            Figure generalised_figure = new Figure();
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("\n*** Figure_draw app ***\n\n");
+                Console.WriteLine("Choose a figure to draw:\n" +
+                    "1 - Circle\n" +
+                    "2 - Rectangle\n" +
+                    "3 - Triangle\n" +
+                    "4 - Diamond\n" +
+                    "5 - MultiAngleFigure");
+                // int figure = ServiceFunction.Get_Int(1, 5, "out of range");
+                Figure_Type figure = (Figure_Type)(ServiceFunction.Get_Int(1, 5, "out of range"));
+                Console.WriteLine("Choose a color of figure:\n" +
+                   "1 - Black\n" +
+                   "2 - White\n" +
+                   "3 - Yellow\n" +
+                   "4 - Red\n" +
+                   "5 - Green");
+                int color_number = ServiceFunction.Get_Int(1, 5, "out of range");
+                ConsoleColor color = ConsoleColor.White;
+                switch (color_number)
+                {
+                    case 1: color = ConsoleColor.Black; break;
+                    case 2: color = ConsoleColor.White; break;
+                    case 3: color = ConsoleColor.Yellow; break;
+                    case 4: color = ConsoleColor.Red; break;
+                    case 5: color = ConsoleColor.Green; break;
+                }
+                switch (figure)
+                {
+                    case Figure_Type.Circle: new Circle(color); break;
+                    case Figure_Type.Rectangle: new Re
+    
 
-    } // class Programm
+                }
+
+                Console.WriteLine("\nFigure list:\n");
+                foreach (var item in Figure.figure_list)
+                    Console.WriteLine(item.ToString() + " | ");
+
+
+                Console.WriteLine("\nAdd figure?\nEnter - yes, any else key - no\n");
+            } while (Console.ReadKey().Key == ConsoleKey.Enter);
+
+            generalised_figure.DrawAll();
+
+        }
+        public enum Figure_Type { Circle, Rectangle, Triangle, Diamond, MultiAngleFigure };
+
+    }
+} // class Programm
 }// namespace
 

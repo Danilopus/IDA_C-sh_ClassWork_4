@@ -8,9 +8,17 @@ namespace IDA_C_sh_ClassWork
 {
     internal class Circle : Figure
     {
+
+        public Circle(ConsoleColor figure_color) 
+        {
+            _figure_type = Program.Figure_Type.Circle;
+            _figure_color = figure_color;
+            _dimension1 = 5;
+            figure_list.Add(this);
+        }
         override public void DrawIt()
         {
-          Console.ForegroundColor = _figure_color;
+            Console.ForegroundColor = _figure_color;
 
             Console.WriteLine("         *        ");
             Console.WriteLine("      *     *     ");
@@ -25,12 +33,7 @@ namespace IDA_C_sh_ClassWork
             Console.ForegroundColor = ConsoleColor.White;
 
         }
-        public Circle(ConsoleColor figure_color) 
-        {
-            _figure_type = Program.Figure_Type.Circle;
-            _figure_color = figure_color;
-            figure_list.Add(this);
-            _dimension1 = 5;
-        }
+     
+
     }
 }
